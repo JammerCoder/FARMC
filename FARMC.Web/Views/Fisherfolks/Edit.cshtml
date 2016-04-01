@@ -1,0 +1,25 @@
+﻿@model FARMC.Web.ViewModels.FisherfolkViewModel
+@using System.Web.Script.Serialization
+
+@{
+    ViewBag.Title = "Edit Fisherfolk Information";
+}
+
+@{ string data = new JavaScriptSerializer().Serialize(Model);}
+
+@section scripts
+{
+    <script src="~/Scripts/knockout-3.3.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery-validate.bootstrap-tooltip.js"></script>
+
+    <script src="~/Scripts/fisherfolkviewmodel.js"></script>
+    <script type="text/javascript">
+        var fisherfolkViewModel = new FisherfolkViewModel(@Html.Raw(data));
+        ko.applyBindings(fisherfolkViewModel);
+    </script>
+}
+
+@Html.Partial("_EditFisherfolkInfo")

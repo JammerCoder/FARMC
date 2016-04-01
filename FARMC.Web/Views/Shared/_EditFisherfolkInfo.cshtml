@@ -1,0 +1,45 @@
+﻿<h2>@ViewBag.Title</h2>
+
+<p id="MessageToUser" data-bind="text: MessageToUser"></p>
+
+<form>
+    <div class="form-group">
+        <label class="control-label">ID No.: </label>
+        <input class="form-control" name="FisherId" data-bind="value: FisherId, event: {change: flagfisherfolkAsEdited}" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="LastName" >Name: </label>
+        <input class="form-control" name="LastName" data-bind="value: LastName, event: {change: flagfisherfolkAsEdited}" />
+    </div>
+
+
+    <table class="table table-striped">
+        <tr>
+            <th>Fish Name</th>
+            <th>Qty (kg)</th>
+            <th>Unit Price</th>
+            <th>Sub-Total</th>
+            <th><button data-bind="click: addFishCatch" class="btn btn-info btn-xs">Add</button></th>
+        </tr>
+        <tbody data-bind="foreach: FishCatches">
+            <tr>
+                <td class="form-group"><input name="FishName" class="form-control input-sm" data-bind="attrib: {'id': 'FishName_' + $index()}, value: FishName, event: {change: flagFishCatchAsEdited}, hasfocus: true" /></td>
+                <td class="form-group"><input name="Qty" class="form-control input-sm text-right" data-bind="attrib: {'id': 'Qty_' + $index()},value: Qty, event: {change: flagFishCatchAsEdited}" /></td>
+                <td class="form-group"><input name="UnitPrice" class="form-control input-sm text-right" data-bind="attrib: {'id': 'UnitPrice_' + $index()}, value: UnitPrice, event: {change: flagFishCatchAsEdited}" /></td>
+                <td class="form-group"><span class="form-control text-right" data-bind="text: SubTotal"></span></td>
+                <td class="form-group"><button class="btn btn-danger btn-xs" data-bind="click: $parent.deleteFishCatch">Delete</button></td>
+            </tr>
+        </tbody>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td class="form-group"><span class="form-control text-right">Total</span></td>
+            <td class="form-group"><span class="form-control text-right" data-bind="text: Total"></span></td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+    <p><button data-bind="click: save" class="btn btn-primary">Save</button></p>
+    <p><a href="/Fisherfolks/Index" class="btn btn-default btn-sm">&laquo; Back to List</a></p>
+</form>
